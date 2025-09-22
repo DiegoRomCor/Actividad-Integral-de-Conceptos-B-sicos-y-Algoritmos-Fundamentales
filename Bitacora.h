@@ -17,7 +17,6 @@ class Bitacora {
 
         void leerArchivo(string nombre);
         void crearArchivo(string nombre);
-
         void leerBitacora();
 
         //
