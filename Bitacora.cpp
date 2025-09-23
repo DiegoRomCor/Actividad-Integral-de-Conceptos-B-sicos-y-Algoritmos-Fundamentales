@@ -15,6 +15,7 @@ Bitacora::Bitacora() {
 
 }
 
+// Complejidad: O(n)
 void Bitacora::leerArchivo(string nombre) {
     // Obtenido con ayuda de: https://www.youtube.com/watch?v=RBZidsPGkfs 
     ifstream archivo(nombre); 
@@ -42,6 +43,7 @@ void Bitacora::leerArchivo(string nombre) {
 
 }
 
+// Complejidad: O(n)
 void Bitacora::crearArchivo(string nombre) {
     ofstream archivo(nombre);
     if (archivo.is_open()) {
@@ -62,17 +64,7 @@ void Bitacora::crearArchivo(string nombre) {
     }
 }
 
-void Bitacora::leerBitacora() {
-    for(int i = 0;i < vect.size();i++) {
-        cout << "mes=" << vect[i].getMes()
-                << " dia=" << vect[i].getDia()
-                << " hora=" << vect[i].getHora()
-                << " minuto=" << vect[i].getMinuto()
-                << " segundo=" << vect[i].getSegundo()
-                << " mensaje=" << vect[i].getMensaje() << "\n";
-    }
-}
-
+// Complejidad: O(1)
 bool comparacionFecha(Entrada a, Entrada b) {
     if(a.getMes() != b.getMes()) {
         return a.getMes() < b.getMes();
@@ -127,6 +119,7 @@ void Bitacora::mergeSort() {
     mergeRecursivo(0, vect.size() - 1);
 }
 
+// Complejidad: O(log n)
 int Bitacora::buscarBin(Entrada fecha) {
     int inicio = 0;
     int fin = vect.size() - 1;
@@ -152,6 +145,7 @@ int Bitacora::buscarBin(Entrada fecha) {
     return resultado;
 }
 
+// Complejidad: O(n)
 void Bitacora::archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal) {
     int indexI = buscarBin(fechaInicial);
 

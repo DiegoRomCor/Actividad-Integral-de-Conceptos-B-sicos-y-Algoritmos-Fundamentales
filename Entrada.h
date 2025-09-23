@@ -23,6 +23,7 @@ class Entrada {
         Entrada();
         Entrada(string mes, int dia, int hora, int minuto, int segundo);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje);
+        // Complejidad: O(1)
         int conversionMes(string mes);
         string conversionMes(int mes);
 
