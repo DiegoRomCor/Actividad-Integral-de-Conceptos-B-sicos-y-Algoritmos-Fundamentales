@@ -154,10 +154,9 @@ int Bitacora::buscarBin(Entrada fecha) {
 
 void Bitacora::archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal) {
     int indexI = buscarBin(fechaInicial);
-    int indexF = buscarBin(fechaFinal);
 
     Bitacora b;
-    for(int i = indexI;comparacionFecha(vect[i], fechaFinal) || i < indexF;i++) {
+    for(int i = indexI;i<vect.size() && comparacionFecha(vect[i], fechaFinal) || (vect[i].getDia() == fechaFinal.getDia() && vect[i].getMes() == fechaFinal.getMes());i++) {
         b.vect.push_back(vect[i]);
     }
 

@@ -22,20 +22,18 @@ int main() {
 
     while (true) {
         string fechaInicio;
-        cout << "Ingresa la fecha inicial (ej: Aug 10): ";
-
         Entrada fechaI;
+
+        cout << "Ingresa la fecha inicial (ej: Aug 10): ";
         fechaI.leerMesDia(fechaInicio);
 
         string fechaFin;
-        cout << "Ingresa la fecha final (ej: Aug 10): ";
-
         Entrada fechaF;
 
+        cout << "Ingresa la fecha final (ej: Aug 10): ";
         fechaF.leerMesDia(fechaFin);
 
         string nombre = "salida" + to_string(contador) + "-eq7.txt";
-
         bitacora.archivoBusqueda(nombre, fechaI, fechaF);
         
         string salir;
