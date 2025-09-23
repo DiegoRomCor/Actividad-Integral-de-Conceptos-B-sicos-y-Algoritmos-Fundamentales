@@ -20,6 +20,7 @@ class Entrada {
         string mensaje;
 
     public:
+        Entrada(string mes, int dia, int hora, int minuto, int segundo);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje);
         int conversionMes(string mes);
         string conversionMes(int mes);
