@@ -1,3 +1,6 @@
+#ifndef BITACORA_H
+#define BITACORA_H
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -30,3 +33,5 @@ class Bitacora {
         void archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal);
 
 };
+
+#endif

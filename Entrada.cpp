@@ -9,6 +9,10 @@
 
 using namespace std;
 
+Entrada::Entrada() {
+
+}
+
 Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo) {
     this->mes = conversionMes(mes);
     this->dia = dia;
@@ -84,6 +88,23 @@ string Entrada::conversionMes(int mes) {
     }
 
     return " ";
+}
+
+void Entrada::leerMesDia(string linea) {
+    getline(cin >> ws, linea);
+
+    int p1 = linea.find(' ');
+
+    string mesString = linea.substr(0, p1);
+    string diaString;
+
+    diaString = linea.substr(p1 + 1);
+
+    int diaNumero;
+    diaNumero = stoi(diaString);
+
+    this->setMes(this->conversionMes(mesString));
+    this->setDia(diaNumero);
 }
 
 int Entrada::getMes() {
