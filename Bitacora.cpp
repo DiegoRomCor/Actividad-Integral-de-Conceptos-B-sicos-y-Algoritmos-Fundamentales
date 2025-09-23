@@ -28,11 +28,12 @@ void Bitacora::leerArchivo(string nombre) {
             string mes = linea.substr(0, p1); 
             string dia = linea.substr(p1 + 1, p2 - p1 - 1); 
             string tiempo = linea.substr(p2 + 1, p3 - p2 - 1); 
-            string mensaje = linea.substr(p3 + 1); int c1 = tiempo.find(':'); 
+            string mensaje = linea.substr(p3 + 1); 
+            int c1 = tiempo.find(':'); 
 
             int c2 = tiempo.find(':', c1 + 1); string hora, minuto, segundo; 
             hora = tiempo.substr(0, c1); minuto = tiempo.substr(c1 + 1, c2 - c1 - 1); 
-            segundo = tiempo.substr(c2 + 1); 
+            segundo = tiempo.substr(c2 + 1);
 
             Entrada nuevo(mes, stoi(dia), stoi(hora), stoi(minuto), stoi(segundo), mensaje); 
             vect.push_back(nuevo); 
@@ -123,14 +124,14 @@ void Bitacora::mergeRecursivo(int ini, int fin) {
 
 // Complejidad: O(n log n)
 void Bitacora::mergeSort() {
-    return mergeRecursivo(0, vect.size() - 1);
+    mergeRecursivo(0, vect.size() - 1);
 }
 
 int Bitacora::buscarBin(Entrada fecha) {
     int inicio = 0;
     int fin = vect.size() - 1;
     int medio = 0;
-    int resultado = -1;
+    int resultado = 0;
 
     while (inicio <= fin) {
         medio = (inicio + fin) / 2;
@@ -148,7 +149,7 @@ int Bitacora::buscarBin(Entrada fecha) {
         }
     }
 
-    return resultado+1;
+    return resultado;
 }
 
 void Bitacora::archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal) {
@@ -156,12 +157,8 @@ void Bitacora::archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fech
     int indexF = buscarBin(fechaFinal);
 
     Bitacora b;
-    for(int i = indexI;i < indexF;i++) {
+    for(int i = indexI;comparacionFecha(vect[i], fechaFinal) || i < indexF;i++) {
         b.vect.push_back(vect[i]);
-    }
-    while(vect[indexF].getMes() == fechaFinal.getMes() && vect[indexF].getDia() == fechaFinal.getDia()) {
-        b.vect.push_back(vect[indexF]);
-        indexF++;
     }
 
     b.crearArchivo(nombre);

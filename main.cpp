@@ -23,41 +23,16 @@ int main() {
     while (true) {
         string fechaInicio;
         cout << "Ingresa la fecha inicial (ej: Aug 10): ";
-        getline(cin >> ws, fechaInicio);
 
-        int p1 = (int)fechaInicio.find(' ');
-        int p2 = (int)fechaInicio.find(' ', p1 + 1);
-
-        string mesStr = fechaInicio.substr(0, p1);
-        string diaStr;
-        if (p2 == -1) {
-            diaStr = fechaInicio.substr(p1 + 1);
-        } else {
-            diaStr = fechaInicio.substr(p1 + 1, p2 - p1 - 1);
-        }
-
-        int diaNum;
-        diaNum = stoi(diaStr);
-
-        Entrada fechaI(mesStr, diaNum, 0, 0, 0, "");
+        Entrada fechaI;
+        fechaI.leerMesDia(fechaInicio);
 
         string fechaFin;
         cout << "Ingresa la fecha final (ej: Aug 10): ";
-        getline(cin >> ws, fechaFin);
 
-        p1 = (int)fechaFin.find(' ');
-        p2 = (int)fechaFin.find(' ', p1 + 1);
+        Entrada fechaF;
 
-        mesStr = fechaFin.substr(0, p1);
-        if (p2 == -1) {
-            diaStr = fechaFin.substr(p1 + 1);
-        } else {
-            diaStr = fechaFin.substr(p1 + 1, p2 - p1 - 1);
-        }
-
-        diaNum = stoi(diaStr);
-
-        Entrada fechaF(mesStr, diaNum, 0, 0, 0, "");
+        fechaF.leerMesDia(fechaFin);
 
         string nombre = "salida" + to_string(contador) + "-eq7.txt";
 

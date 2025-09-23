@@ -20,10 +20,13 @@ class Entrada {
         string mensaje;
 
     public:
+        Entrada();
         Entrada(string mes, int dia, int hora, int minuto, int segundo);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje);
         int conversionMes(string mes);
         string conversionMes(int mes);
+
+        void leerMesDia(string linea);
 
         int getMes();
         void setMes(int mes);
