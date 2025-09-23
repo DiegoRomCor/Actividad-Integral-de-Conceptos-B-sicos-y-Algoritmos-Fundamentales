@@ -42,7 +42,7 @@ void Bitacora::leerArchivo(string nombre) {
 }
 
 void Bitacora::crearArchivo(string nombre) {
-    std::ofstream archivo(nombre);
+    ofstream archivo(nombre);
     if (archivo.is_open()) {
         for (int i = 0;i < vect.size();i++) {
             string mesString = vect[i].conversionMes(vect[i].getMes());
@@ -63,12 +63,12 @@ void Bitacora::crearArchivo(string nombre) {
 
 void Bitacora::leerBitacora() {
     for(int i = 0;i < vect.size();i++) {
-            cout << "mes=" << vect[i].getMes()
-                 << " dia=" << vect[i].getDia()
-                 << " hora=" << vect[i].getHora()
-                 << " minuto=" << vect[i].getMinuto()
-                 << " segundo=" << vect[i].getSegundo()
-                 << " mensaje=" << vect[i].getMensaje() << "\n";
+        cout << "mes=" << vect[i].getMes()
+                << " dia=" << vect[i].getDia()
+                << " hora=" << vect[i].getHora()
+                << " minuto=" << vect[i].getMinuto()
+                << " segundo=" << vect[i].getSegundo()
+                << " mensaje=" << vect[i].getMensaje() << "\n";
     }
 }
 
@@ -86,7 +86,7 @@ bool comparacionFecha(Entrada a, Entrada b) {
     }
 }
 
-//
+// Complejidad: O(n)
 void Bitacora::mezcla(int ini, int mid, int fin) {
     int i = ini;
     int j = mid + 1;
@@ -112,7 +112,7 @@ void Bitacora::mezcla(int ini, int mid, int fin) {
     }
 }
 
-//
+// Complejidad: O(n log n)
 void Bitacora::mergeRecursivo(int ini, int fin) {
     if (ini >= fin) return;
     int mid = (ini + fin) / 2;
@@ -121,7 +121,48 @@ void Bitacora::mergeRecursivo(int ini, int fin) {
     mezcla(ini, mid, fin);
 }
 
-//
+// Complejidad: O(n log n)
 void Bitacora::mergeSort() {
     return mergeRecursivo(0, vect.size() - 1);
+}
+
+int Bitacora::buscarBin(Entrada fecha) {
+    int inicio = 0;
+    int fin = vect.size() - 1;
+    int medio = 0;
+    int resultado = -1;
+
+    while (inicio <= fin) {
+        medio = (inicio + fin) / 2;
+
+        if (vect[medio].getMes() == fecha.getMes() &&
+            vect[medio].getDia() == fecha.getDia()) {
+            resultado = medio;
+            fin = medio - 1;
+        } 
+        else if (comparacionFecha(vect[medio], fecha)) {
+            inicio = medio + 1;
+        } 
+        else {
+            fin = medio - 1;
+        }
+    }
+
+    return resultado+1;
+}
+
+void Bitacora::archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal) {
+    int indexI = buscarBin(fechaInicial);
+    int indexF = buscarBin(fechaFinal);
+
+    Bitacora b;
+    for(int i = indexI;i < indexF;i++) {
+        b.vect.push_back(vect[i]);
+    }
+    while(vect[indexF].getMes() == fechaFinal.getMes() && vect[indexF].getDia() == fechaFinal.getDia()) {
+        b.vect.push_back(vect[indexF]);
+        indexF++;
+    }
+
+    b.crearArchivo(nombre);
 }

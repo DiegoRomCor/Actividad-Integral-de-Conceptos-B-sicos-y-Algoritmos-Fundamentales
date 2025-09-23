@@ -9,6 +9,23 @@
 
 using namespace std;
 
+Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo) {
+    this->mes = conversionMes(mes);
+    this->dia = dia;
+    this->hora = hora;
+    this->minuto = minuto;
+    this->segundo = segundo;
+}
+
+Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje) {
+    this->mes = conversionMes(mes);
+    this->dia = dia;
+    this->hora = hora;
+    this->minuto = minuto;
+    this->segundo = segundo;
+    this->mensaje = mensaje;
+}
+
 int Entrada::conversionMes(string mes) {
         if(mes == "Jan") {
             return 1;
@@ -67,15 +84,6 @@ string Entrada::conversionMes(int mes) {
     }
 
     return " ";
-}
-
-Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje) {
-    this->mes = conversionMes(mes);
-    this->dia = dia;
-    this->hora = hora;
-    this->minuto = minuto;
-    this->segundo = segundo;
-    this->mensaje = mensaje;
 }
 
 int Entrada::getMes() {
