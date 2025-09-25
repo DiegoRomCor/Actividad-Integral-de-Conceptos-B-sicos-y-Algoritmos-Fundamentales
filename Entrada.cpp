@@ -1,4 +1,6 @@
-#include "Entrada.h"
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
 
 #include <iostream>
 #include <fstream>
@@ -6,6 +8,8 @@
 #include <vector>
 #include <cctype>
 #include <string>
+
+#include "Entrada.h"
 
 using namespace std;
 
@@ -91,22 +95,27 @@ string Entrada::conversionMes(int mes) {
 }
 
 void Entrada::leerMesDia(string linea) {
+    //  Es una combinación en C++ que primero consume los espacios en blanco iniciales de la entrada estándar 
+    // (cin >> ws) y luego usa la función std::getline para leer toda una línea de texto, incluyendo espacios, 
+    // y almacenarla en la variable linea hasta que encuentra un salto de línea.
     getline(cin >> ws, linea);
+    int parte1 = linea.find(' ');
 
-    int p1 = linea.find(' ');
-
-    string mesString = linea.substr(0, p1);
+    string mesString = linea.substr(0, parte1);
     string diaString;
 
-    diaString = linea.substr(p1 + 1);
+    diaString = linea.substr(parte1 + 1);
 
     int diaNumero;
+    // stoi() es una función de la biblioteca estándar que convierte una cadena en un entero.
+    // Obtenido de https://www.geeksforgeeks.org/cpp/stdstoi-function-in-cpp/
     diaNumero = stoi(diaString);
 
     this->setMes(this->conversionMes(mesString));
     this->setDia(diaNumero);
 }
 
+// Getters y Setters para las variables privadas
 int Entrada::getMes() {
     return this->mes;
 }

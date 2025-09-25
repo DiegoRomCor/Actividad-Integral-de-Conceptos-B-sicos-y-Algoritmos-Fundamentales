@@ -1,3 +1,7 @@
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -37,12 +41,12 @@ int main() {
         bitacora.archivoBusqueda(nombre, fechaI, fechaF);
         
         string salir;
-        cout<<"¿Deseas continuar? (Y para si, N para no)"<<endl;
+        cout<<"Deseas continuar? (Y para si, N para no)"<<endl;
         cin>>salir;
         if(salir == "N") {
             break;
         } else {
-            contador ++;
+            contador++;
         }
 
     }

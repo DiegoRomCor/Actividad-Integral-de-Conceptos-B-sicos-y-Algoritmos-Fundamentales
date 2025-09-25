@@ -1,12 +1,9 @@
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
+
 #ifndef ENTRADA_H
 #define ENTRADA_H
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <cctype>
-#include <string>
 
 using namespace std;
 
