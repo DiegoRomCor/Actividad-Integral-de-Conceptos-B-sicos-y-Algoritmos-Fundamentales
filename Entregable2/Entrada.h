@@ -1,3 +1,7 @@
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
+
 #ifndef ENTRADA_H
 #define ENTRADA_H
 
@@ -22,6 +26,7 @@ class Entrada
         Entrada();
         ~Entrada() {}
         Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip);
+        Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip, string mensaje);
         // Complejidad: O(1)
         int conversionMes(string mes);
