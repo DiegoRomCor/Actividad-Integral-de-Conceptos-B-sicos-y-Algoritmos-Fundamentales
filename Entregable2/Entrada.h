@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 class Entrada
@@ -19,14 +20,16 @@ class Entrada
 
     public:
         Entrada();
-        Entrada(vector<int> ip);
+        ~Entrada() {}
         Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip, string mensaje);
         // Complejidad: O(1)
         int conversionMes(string mes);
-        string conversionMes(int mes);
 
         void leerMesDia(string linea);
+        void leerIp(string linea);
+
+        bool menorIp(Entrada otro);
 
         int getMes();
         void setMes(int mes);
@@ -49,7 +52,7 @@ class Entrada
         string getMensaje();
         void setMensaje(string mensaje);
 
-        Entrada getNext();
+        Entrada* getNext();
         void setNext(Entrada* next);
 };
 
