@@ -45,6 +45,16 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<
     this->next = nullptr;
 }
 
+Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje) {
+    this->mes = conversionMes(mes);
+    this->dia = dia;
+    this->hora = hora;
+    this->minuto = minuto;
+    this->segundo = segundo;
+    this->mensaje = mensaje;
+    this->next = nullptr;
+}
+
 int Entrada::conversionMes(string mes) {
     if(mes == "Jan") {
         return 1;
@@ -106,16 +116,16 @@ void Entrada::leerIp(string linea) {
     string seccion4 = linea.substr(punto3 + 1, dosPuntos - punto3 - 1);
     string seccionPuerto = linea.substr(dosPuntos + 1);
 
-    int o1 = stoi(seccion1);
-    int o2 = stoi(seccion2);
-    int o3 = stoi(seccion3);
-    int o4 = stoi(seccion4);
+    int num1 = stoi(seccion1);
+    int num2 = stoi(seccion2);
+    int num3 = stoi(seccion3);
+    int num4 = stoi(seccion4);
     int numPuerto = stoi(seccionPuerto);
 
-    resultado.push_back(o1);
-    resultado.push_back(o2);
-    resultado.push_back(o3);
-    resultado.push_back(o4);
+    resultado.push_back(num1);
+    resultado.push_back(num2);
+    resultado.push_back(num3);
+    resultado.push_back(num4);
     resultado.push_back(numPuerto);
 
     this->ip = resultado;

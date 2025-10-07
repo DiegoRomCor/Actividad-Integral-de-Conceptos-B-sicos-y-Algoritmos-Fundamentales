@@ -15,13 +15,25 @@
 using namespace std;
 
 int main() {
-    Entrada Primero;
+    Bitacora b;
 
-    string s = "192.168.100.2:502";
+    b.leerArchivo("bitacora.txt");
+    /*cout<<"Mes: "<<b.head->getMes()<<endl;
+    cout<<"Mes: "<<b.head->getDia()<<endl;
+    cout<<"Mes: "<<b.head->getHora()<<endl;
+    cout<<"Mes: "<<b.head->getMinuto()<<endl;
+    cout<<"Mes: "<<b.head->getSegundo()<<endl;
+    vector<int> ip = b.head->getIp();
+    cout<<"Ip: "<<ip[0]<<"."<<ip[1]<<"."<<ip[2]<<"."<<ip[3]<<":"<<ip[4]<<endl;
+    cout<<"Mensaje: "<<b.head->getMensaje()<<endl;
 
-    Primero.leerIp(s);
+    cout<<"Mes: "<<b.tail->getMes()<<endl;
+    cout<<"Mes: "<<b.tail->getDia()<<endl;
+    cout<<"Mes: "<<b.tail->getHora()<<endl;
+    cout<<"Mes: "<<b.tail->getMinuto()<<endl;
+    cout<<"Mes: "<<b.tail->getSegundo()<<endl;
+    ip = b.tail->getIp();
+    cout<<"Ip: "<<ip[0]<<"."<<ip[1]<<"."<<ip[2]<<"."<<ip[3]<<":"<<ip[4]<<endl;
+    cout<<"Mensaje: "<<b.tail->getMensaje()<<endl;*/
 
-    vector<int> v = Primero.getIp();
-
-    cout<<v[0]<<"."<<v[1]<<"."<<v[2]<<"."<<v[3]<<":"<<v[4];
 }
