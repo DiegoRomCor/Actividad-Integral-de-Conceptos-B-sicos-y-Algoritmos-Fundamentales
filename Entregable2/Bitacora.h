@@ -35,8 +35,6 @@ class Bitacora {
         // Complejidad: O(n)
         void archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal);
 
-        
-
 };
 
 #endif
