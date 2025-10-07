@@ -14,11 +14,14 @@
 using namespace std;
 
 Entrada::Entrada() {
-
-}
-
-Entrada::Entrada(vector<int> ip) {
-    this->ip = ip;
+    this->mes = 0;
+    this->dia = 0;
+    this->hora = 0;
+    this->minuto = 0;
+    this->segundo = 0;
+    this->ip = vector<int>(5, 0);
+    this->mensaje = "";
+    this->next = nullptr;
 }
 
 Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip) {
@@ -28,6 +31,7 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<
     this->minuto = minuto;
     this->segundo = segundo;
     this->ip = ip;
+    this->next = nullptr;
 }
 
 Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip, string mensaje) {
@@ -38,6 +42,7 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<
     this->segundo = segundo;
     this->ip = ip;
     this->mensaje = mensaje;
+    this->next = nullptr;
 }
 
 int Entrada::conversionMes(string mes) {
@@ -70,44 +75,13 @@ int Entrada::conversionMes(string mes) {
     return 0;
 }
 
-string Entrada::conversionMes(int mes) {
-    if(mes == 1) {
-        return "Jan";
-    } else if(mes == 2) {
-        return "Feb";
-    } else if(mes == 3) {
-        return "Mar";
-    } else if(mes == 4) {
-        return "Apr";
-    } else if(mes == 5) {
-        return "May";
-    } else if(mes == 6) {
-        return "Jun";
-    } else if(mes == 7) {
-        return "Jul";
-    } else if(mes == 8) {
-        return "Aug";
-    } else if(mes == 9) {
-        return "Sep";
-    } else if(mes == 10) {
-        return "Oct";
-    } else if(mes == 11) {
-        return "Nov";
-    } else if(mes == 12) {
-        return "Dec";
-    }
-
-    return " ";
-}
-
 void Entrada::leerMesDia(string linea) {
-    getline(cin >> ws, linea);
-    int parte1 = linea.find(' ');
+    int punto1 = linea.find(' ');
 
-    string mesString = linea.substr(0, parte1);
+    string mesString = linea.substr(0, punto1);
     string diaString;
 
-    diaString = linea.substr(parte1 + 1);
+    diaString = linea.substr(punto1 + 1);
 
     int diaNumero;
     // stoi() es una función de la biblioteca estándar que convierte una cadena en un entero.
@@ -117,6 +91,36 @@ void Entrada::leerMesDia(string linea) {
     this->setMes(this->conversionMes(mesString));
     this->setDia(diaNumero);
 }
+
+void Entrada::leerIp(string linea) {
+    vector<int> resultado;
+
+    int punto1 = (int)linea.find('.', 0);
+    int punto2 = (int)linea.find('.', punto1 + 1);
+    int punto3 = (int)linea.find('.', punto2 + 1);
+    int dosPuntos = (int)linea.find(':', punto3 + 1);
+
+    string seccion1 = linea.substr(0, punto1 - 0);
+    string seccion2 = linea.substr(punto1 + 1, punto2 - punto1 - 1);
+    string seccion3 = linea.substr(punto2 + 1, punto3 - punto2 - 1);
+    string seccion4 = linea.substr(punto3 + 1, dosPuntos - punto3 - 1);
+    string seccionPuerto = linea.substr(dosPuntos + 1);
+
+    int o1 = stoi(seccion1);
+    int o2 = stoi(seccion2);
+    int o3 = stoi(seccion3);
+    int o4 = stoi(seccion4);
+    int numPuerto = stoi(seccionPuerto);
+
+    resultado.push_back(o1);
+    resultado.push_back(o2);
+    resultado.push_back(o3);
+    resultado.push_back(o4);
+    resultado.push_back(numPuerto);
+
+    this->ip = resultado;
+}
+
 
 // Getters y Setters para las variables privadas
 int Entrada::getMes() {
@@ -175,8 +179,8 @@ void Entrada::setMensaje(string mensaje) {
     this->mensaje = mensaje;
 }
 
-Entrada Entrada::getNext() {
-    return *this->next;
+Entrada* Entrada::getNext() {
+    return this->next;
 }
 
 void Entrada::setNext(Entrada* next) {
