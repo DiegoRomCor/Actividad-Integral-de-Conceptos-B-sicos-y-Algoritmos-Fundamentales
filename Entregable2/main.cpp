@@ -18,43 +18,42 @@ int main() {
     Bitacora b;
 
     b.leerArchivo("bitacora.txt");
-    /*cout<<"Mes: "<<b.head->getMes()<<endl;
-    cout<<"Dia: "<<b.head->getDia()<<endl;
-    cout<<"Hora: "<<b.head->getHora()<<endl;
-    cout<<"Minuto: "<<b.head->getMinuto()<<endl;
-    cout<<"Segundo: "<<b.head->getSegundo()<<endl;
-    vector<int> ip = b.head->getIp();
-    cout<<"Ip: "<<ip[0]<<"."<<ip[1]<<"."<<ip[2]<<"."<<ip[3]<<":"<<ip[4]<<endl;
-    cout<<"Mensaje: "<<b.head->getMensaje()<<endl;
 
-    cout<<"Mes: "<<b.tail->getMes()<<endl;
-    cout<<"Dia: "<<b.tail->getDia()<<endl;
-    cout<<"Hora: "<<b.tail->getHora()<<endl;
-    cout<<"Minuto: "<<b.tail->getMinuto()<<endl;
-    cout<<"Segundo: "<<b.tail->getSegundo()<<endl;
-    ip = b.tail->getIp();
-    cout<<"Ip: "<<ip[0]<<"."<<ip[1]<<"."<<ip[2]<<"."<<ip[3]<<":"<<ip[4]<<endl;
-    cout<<"Mensaje: "<<b.tail->getMensaje()<<endl;
+    b.mergeSort();
+    b.crearArchivo("bitacoraOrdenadaIP-Eq7.txt");
 
-    Entrada* current = b.head->getNext();
-    Entrada* current2 = current->getNext();
+    int contador = 1;
 
-    cout<<"Mes: "<<current->getMes()<<endl;
-    cout<<"Dia: "<<current->getDia()<<endl;
-    cout<<"Hora: "<<current->getHora()<<endl;
-    cout<<"Minuto: "<<current->getMinuto()<<endl;
-    cout<<"Segundo: "<<current->getSegundo()<<endl;
-    vector<int> ip = current->getIp();
-    cout<<"Ip: "<<ip[0]<<"."<<ip[1]<<"."<<ip[2]<<"."<<ip[3]<<":"<<ip[4]<<endl;
-    cout<<"Mensaje: "<<current->getMensaje()<<endl;
+    while (true) {
+        string ipInicio;
+        Entrada ip1;
 
-    cout<<"Mes: "<<current2->getMes()<<endl;
-    cout<<"Dia: "<<current2->getDia()<<endl;
-    cout<<"Hora: "<<current2->getHora()<<endl;
-    cout<<"Minuto: "<<current2->getMinuto()<<endl;
-    cout<<"Segundo: "<<current2->getSegundo()<<endl;
-    ip = current2->getIp();
-    cout<<"Ip: "<<ip[0]<<"."<<ip[1]<<"."<<ip[2]<<"."<<ip[3]<<":"<<ip[4]<<endl;
-    cout<<"Mensaje: "<<current2->getMensaje()<<endl;*/
+        cout << "Ingresa la ip inicial (ej: 961.43.478.18): ";
+        cin>>ipInicio;
+        ipInicio+=":0";
+        ip1.leerIp(ipInicio);
 
+        string ipFin;
+        Entrada ip2;
+
+        cout << "Ingresa la ip final (ej: 961.43.478.18): ";
+        cin>>ipFin;
+        ipFin+=":9999";
+        ip2.leerIp(ipFin);
+
+        string nombre = "salida" + to_string(contador) + "-eq7.txt";
+        b.busquedaPorIp(nombre, ip1, ip2);
+        
+        string salir;
+        cout<<"Deseas continuar? (Y para si, N para no)"<<endl;
+        cin>>salir;
+        if(salir == "N") {
+            break;
+        } else {
+            contador++;
+        }
+
+    }
+
+    return 0;
 }
