@@ -131,7 +131,6 @@ void Entrada::leerIp(string linea) {
     this->ip = resultado;
 }
 
-
 // Getters y Setters para las variables privadas
 int Entrada::getMes() {
     return this->mes;

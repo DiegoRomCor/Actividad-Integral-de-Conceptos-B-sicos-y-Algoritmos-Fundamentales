@@ -34,8 +34,6 @@ class Entrada
         void leerMesDia(string linea);
         void leerIp(string linea);
 
-        bool menorIp(Entrada otro);
-
         int getMes();
         void setMes(int mes);
 

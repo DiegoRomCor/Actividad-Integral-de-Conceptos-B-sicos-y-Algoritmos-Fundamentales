@@ -71,3 +71,117 @@ void Bitacora::leerArchivo(string nombre) {
     }
 
 }
+
+
+// Complejidad: O(n)
+void Bitacora::crearArchivo(string nombre) {
+    ofstream archivo(nombre);
+    if (archivo.is_open()) {
+        Entrada* actual = this->head;
+        while(actual) {
+            archivo << actual->getMensaje() << '\n';
+            actual = actual->getNext();
+        }
+
+        archivo.close();
+    }
+}
+
+// Obtenido con apoyo de: https://www.baeldung.com/cs/merge-sort-linked-list // Codigo de ejemplo para entender como funciona
+// https://interviewkickstart.com/blogs/learn/merge-sort-for-linked-list // En este se muestra un pseudocodigo de como se utiliza, ademas
+// muestra el utilizar fast and slow method para combinarlos
+Entrada* Bitacora::mezcla(Entrada* a, Entrada* b) {
+    Entrada nodoFantasma;
+    nodoFantasma.setNext(nullptr);
+    Entrada* cola = &nodoFantasma;
+
+    while(a && b) {
+        if (!( b->getIp() < a->getIp() )) {
+            cola->setNext(a);
+            a = a->getNext();
+        } else {
+            cola->setNext(b);
+            b = b->getNext();
+        }
+        cola = cola->getNext();
+    }
+
+    if(a) {
+        cola->setNext(a);
+    }
+    else{
+        cola->setNext(b);
+    }
+
+    return nodoFantasma.getNext();
+}
+
+Entrada* Bitacora::mergeRecursivo(Entrada* cabezaLocal) {
+    if(!cabezaLocal || !cabezaLocal->getNext()) {
+        return cabezaLocal;
+    } 
+
+    Entrada* lento = cabezaLocal;
+    Entrada* rapido = cabezaLocal->getNext();
+    while(rapido && rapido->getNext()) {
+        lento = lento->getNext();
+        rapido = rapido->getNext()->getNext();
+    }
+
+    Entrada* medio = lento->getNext();
+    lento->setNext(nullptr);
+
+    Entrada* izquierda = mergeRecursivo(cabezaLocal);
+    Entrada* derecha   = mergeRecursivo(medio);
+
+    return mezcla(izquierda, derecha);
+}
+
+void Bitacora::mergeSort() {
+    if(!this->head || !this->head->getNext()) {
+        return;
+    } 
+
+    this->head = mergeRecursivo(this->head);
+
+    Entrada* actual = this->head;
+    while(actual->getNext()) {
+        actual = actual->getNext();
+    }
+
+    this->tail = actual;
+    if(this->tail) {
+        this->tail->setNext(nullptr);
+    }
+}
+
+Entrada* Bitacora::buscaSec(Entrada ip) {
+    Entrada* actual = head;
+    while(actual && actual->getIp()<ip.getIp()) {
+        actual = actual->getNext();
+    }
+    if(!actual) {
+        return nullptr;
+    } else {
+        return actual;
+    }
+}
+
+void Bitacora::busquedaPorIp(string nombre, Entrada ip1, Entrada ip2) {
+    Entrada* inicio = this->buscaSec(ip1);
+    Entrada* fin = this->buscaSec(ip2);
+
+    cout<<inicio->getMensaje()<<endl;
+    cout<<fin->getMensaje()<<endl;
+
+    ofstream archivo(nombre);
+    if (archivo.is_open()) {
+        Entrada* actual = inicio;
+        while(actual != fin) {
+            archivo << actual->getMensaje() << '\n';
+            actual = actual->getNext();
+        }
+
+        archivo.close();
+    }
+}
