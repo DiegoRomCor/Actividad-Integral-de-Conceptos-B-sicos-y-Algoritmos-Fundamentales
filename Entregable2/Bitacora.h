@@ -27,12 +27,8 @@ class Bitacora {
         Entrada* mergeRecursivo(Entrada* head);     
         void mergeSort(); 
 
-        // Complejidad: O(n)
-        void archivoBusqueda(string nombre, Entrada fechaInicial, Entrada fechaFinal);
-
         void busquedaPorIp(string nombre, Entrada ip1, Entrada ip2);
         Entrada* buscaSec(Entrada ip);
-
 };
 
 #endif

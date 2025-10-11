@@ -22,7 +22,12 @@ Bitacora::Bitacora() {
 }
 
 Bitacora::~Bitacora() {
-
+    Entrada* actual = head;
+    while (actual) {
+        Entrada* auxiliar = actual->getNext();
+        delete actual;
+        actual = auxiliar;
+    }
 }
 
 // Complejidad: O(n)
@@ -90,18 +95,19 @@ void Bitacora::crearArchivo(string nombre) {
 // Obtenido con apoyo de: https://www.baeldung.com/cs/merge-sort-linked-list // Codigo de ejemplo para entender como funciona
 // https://interviewkickstart.com/blogs/learn/merge-sort-for-linked-list // En este se muestra un pseudocodigo de como se utiliza, ademas
 // muestra el utilizar fast and slow method para combinarlos
+// Obtenido con apoyo de: https://www.geeksforgeeks.org/dsa/merge-two-sorted-linked-lists-using-dummy-nodes/
+// En esta pagina dan un ejemplo de codigo que utiliza un dummy, o en este caso un auxiliar, lo que facilita el codigo
 Entrada* Bitacora::mezcla(Entrada* a, Entrada* b) {
-    Entrada nodoFantasma;
-    nodoFantasma.setNext(nullptr);
-    Entrada* cola = &nodoFantasma;
+    Entrada auxiliar;
+    Entrada* cola = &auxiliar;
 
     while(a && b) {
-        if (!( b->getIp() < a->getIp() )) {
-            cola->setNext(a);
-            a = a->getNext();
-        } else {
+        if (b->getIp() < a->getIp()) {
             cola->setNext(b);
             b = b->getNext();
+        } else {
+            cola->setNext(a);
+            a = a->getNext();
         }
         cola = cola->getNext();
     }
@@ -113,46 +119,49 @@ Entrada* Bitacora::mezcla(Entrada* a, Entrada* b) {
         cola->setNext(b);
     }
 
-    return nodoFantasma.getNext();
+    return auxiliar.getNext();
 }
 
-Entrada* Bitacora::mergeRecursivo(Entrada* cabezaLocal) {
-    if(!cabezaLocal || !cabezaLocal->getNext()) {
-        return cabezaLocal;
+Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
+    if(!auxiliar || !auxiliar->getNext()) {
+        return auxiliar;
     } 
 
-    Entrada* lento = cabezaLocal;
-    Entrada* rapido = cabezaLocal->getNext();
+    // Encontrar la mitad de la lista actual usando el metodo Slow and Fast
+    Entrada* lento = auxiliar;
+    Entrada* rapido = auxiliar->getNext();
     while(rapido && rapido->getNext()) {
         lento = lento->getNext();
         rapido = rapido->getNext()->getNext();
     }
 
     Entrada* medio = lento->getNext();
+    // Hacemos que apunte a null, para poder dividir la lista, 
+    // al hacer que pare en el while anterior, des esta forma dividimos de mitad en mitad
     lento->setNext(nullptr);
 
-    Entrada* izquierda = mergeRecursivo(cabezaLocal);
+    Entrada* izquierda = mergeRecursivo(auxiliar);
     Entrada* derecha   = mergeRecursivo(medio);
 
     return mezcla(izquierda, derecha);
 }
 
 void Bitacora::mergeSort() {
-    if(!this->head || !this->head->getNext()) {
+    if(this->size == 0 || this->size == 1) {
         return;
     } 
 
     this->head = mergeRecursivo(this->head);
 
+    // Esto es necesario para dejar el tail hasta el final de la lista, 
+    // ya que movimos toda la lista
     Entrada* actual = this->head;
     while(actual->getNext()) {
         actual = actual->getNext();
     }
 
     this->tail = actual;
-    if(this->tail) {
-        this->tail->setNext(nullptr);
-    }
+    this->tail->setNext(nullptr);
 }
 
 Entrada* Bitacora::buscaSec(Entrada ip) {
@@ -170,9 +179,6 @@ Entrada* Bitacora::buscaSec(Entrada ip) {
 void Bitacora::busquedaPorIp(string nombre, Entrada ip1, Entrada ip2) {
     Entrada* inicio = this->buscaSec(ip1);
     Entrada* fin = this->buscaSec(ip2);
-
-    cout<<inicio->getMensaje()<<endl;
-    cout<<fin->getMensaje()<<endl;
 
     ofstream archivo(nombre);
     if (archivo.is_open()) {

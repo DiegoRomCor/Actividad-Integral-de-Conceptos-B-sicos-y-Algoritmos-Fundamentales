@@ -24,7 +24,9 @@ int main() {
 
     int contador = 1;
 
-    while (true) {
+    string salir;
+
+    do {
         string ipInicio;
         Entrada ip1;
 
@@ -44,16 +46,12 @@ int main() {
         string nombre = "salida" + to_string(contador) + "-eq7.txt";
         b.busquedaPorIp(nombre, ip1, ip2);
         
-        string salir;
+        
         cout<<"Deseas continuar? (Y para si, N para no)"<<endl;
         cin>>salir;
-        if(salir == "N") {
-            break;
-        } else {
-            contador++;
-        }
+        contador++;
 
-    }
+    } while(salir == "Y" || salir == "y");
 
     return 0;
 }

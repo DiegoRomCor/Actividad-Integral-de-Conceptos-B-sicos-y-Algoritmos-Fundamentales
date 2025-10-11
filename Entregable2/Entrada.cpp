@@ -110,7 +110,7 @@ void Entrada::leerIp(string linea) {
     int punto3 = (int)linea.find('.', punto2 + 1);
     int dosPuntos = (int)linea.find(':', punto3 + 1);
 
-    string seccion1 = linea.substr(0, punto1 - 0);
+    string seccion1 = linea.substr(0, punto1);
     string seccion2 = linea.substr(punto1 + 1, punto2 - punto1 - 1);
     string seccion3 = linea.substr(punto2 + 1, punto3 - punto2 - 1);
     string seccion4 = linea.substr(punto3 + 1, dosPuntos - punto3 - 1);
