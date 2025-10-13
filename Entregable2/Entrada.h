@@ -31,6 +31,7 @@ class Entrada
         // Complejidad: O(1)
         int conversionMes(string mes);
 
+        // Complejidad: O(1)
         void leerMesDia(string linea);
         void leerIp(string linea);
 

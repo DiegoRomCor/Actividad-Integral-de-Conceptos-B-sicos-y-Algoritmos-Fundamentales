@@ -23,11 +23,16 @@ class Bitacora {
         // Complejidad: O(n), n siendo la cantidad de Entradas que existen
         void crearArchivo(string nombre);
 
-        Entrada* mezcla(Entrada* a, Entrada* b);    
+        // Complejidad: O(n)
+        Entrada* mezcla(Entrada* a, Entrada* b); 
+        // Complejidad: O(n log n)   
         Entrada* mergeRecursivo(Entrada* head);     
+        // Complejidad: O(n log n)
         void mergeSort(); 
 
+        // Complejidad: O(n)
         void busquedaPorIp(string nombre, Entrada ip1, Entrada ip2);
+        // Complejidad: O(n)
         Entrada* buscaSec(Entrada ip);
 };
 
