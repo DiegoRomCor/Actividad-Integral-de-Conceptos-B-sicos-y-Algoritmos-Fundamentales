@@ -43,7 +43,7 @@ int main() {
         ipFin+=":9999";
         ip2.leerIp(ipFin);
 
-        string nombre = "salida" + to_string(contador) + "-eq7.txt";
+        string nombre = "salida" + to_string(contador) + "-Eq7.txt";
         b.busquedaPorIp(nombre, ip1, ip2);
         
         

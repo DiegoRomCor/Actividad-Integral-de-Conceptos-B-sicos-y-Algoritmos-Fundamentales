@@ -13,6 +13,7 @@
 
 using namespace std;
 
+// Complejidad: O(1)
 Entrada::Entrada() {
     this->mes = 0;
     this->dia = 0;
@@ -24,6 +25,7 @@ Entrada::Entrada() {
     this->next = nullptr;
 }
 
+// Complejidad: O(1)
 Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip) {
     this->mes = conversionMes(mes);
     this->dia = dia;
@@ -34,6 +36,7 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<
     this->next = nullptr;
 }
 
+// Complejidad: O(1)
 Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip, string mensaje) {
     this->mes = conversionMes(mes);
     this->dia = dia;
@@ -45,6 +48,7 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<
     this->next = nullptr;
 }
 
+// Complejidad: O(1)
 Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje) {
     this->mes = conversionMes(mes);
     this->dia = dia;
@@ -55,6 +59,7 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string 
     this->next = nullptr;
 }
 
+// Complejidad: O(1)
 int Entrada::conversionMes(string mes) {
     if(mes == "Jan") {
         return 1;
@@ -85,6 +90,7 @@ int Entrada::conversionMes(string mes) {
     return 0;
 }
 
+// Complejidad: O(1)
 void Entrada::leerMesDia(string linea) {
     int punto1 = linea.find(' ');
 
@@ -102,6 +108,7 @@ void Entrada::leerMesDia(string linea) {
     this->setDia(diaNumero);
 }
 
+// Complejidad: O(1)
 void Entrada::leerIp(string linea) {
     vector<int> resultado;
 
@@ -131,6 +138,7 @@ void Entrada::leerIp(string linea) {
     this->ip = resultado;
 }
 
+// Complejidad: O(1)
 // Getters y Setters para las variables privadas
 int Entrada::getMes() {
     return this->mes;
