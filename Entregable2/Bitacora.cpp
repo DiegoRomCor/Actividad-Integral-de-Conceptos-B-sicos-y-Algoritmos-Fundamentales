@@ -190,10 +190,6 @@ Entrada* Bitacora::buscaSec(Entrada ip) {
 
 // Complejidad: O(n)
 void Bitacora::busquedaPorIp(string nombre, Entrada ip1, Entrada ip2) {
-    if(ip1.getIp() > ip2.getIp()) {
-        return;
-    }
-    
     Entrada* inicio = this->buscaSec(ip1);
 
     ofstream archivo(nombre);
