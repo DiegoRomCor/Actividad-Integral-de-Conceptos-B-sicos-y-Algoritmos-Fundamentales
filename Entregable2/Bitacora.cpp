@@ -15,12 +15,14 @@
 
 using namespace std;
 
+// Complejidad: O(1)
 Bitacora::Bitacora() {
     this->tail = nullptr;
     this->head = nullptr;
     this->size = 0;
 }
 
+// Complejidad: O(n)
 Bitacora::~Bitacora() {
     Entrada* actual = head;
     while (actual) {
@@ -77,7 +79,6 @@ void Bitacora::leerArchivo(string nombre) {
 
 }
 
-
 // Complejidad: O(n)
 void Bitacora::crearArchivo(string nombre) {
     ofstream archivo(nombre);
@@ -97,6 +98,8 @@ void Bitacora::crearArchivo(string nombre) {
 // muestra el utilizar fast and slow method para combinarlos
 // Obtenido con apoyo de: https://www.geeksforgeeks.org/dsa/merge-two-sorted-linked-lists-using-dummy-nodes/
 // En esta pagina dan un ejemplo de codigo que utiliza un dummy, o en este caso un auxiliar, lo que facilita el codigo
+
+// Complejidad: O(n)
 Entrada* Bitacora::mezcla(Entrada* a, Entrada* b) {
     Entrada auxiliar;
     Entrada* cola = &auxiliar;
@@ -122,6 +125,7 @@ Entrada* Bitacora::mezcla(Entrada* a, Entrada* b) {
     return auxiliar.getNext();
 }
 
+// Complejidad: O(log n)
 Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
     if(!auxiliar || !auxiliar->getNext()) {
         return auxiliar;
@@ -146,6 +150,7 @@ Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
     return mezcla(izquierda, derecha);
 }
 
+// Complejidad: O(n log n)
 void Bitacora::mergeSort() {
     if(this->size == 0 || this->size == 1) {
         return;
@@ -164,6 +169,7 @@ void Bitacora::mergeSort() {
     this->tail->setNext(nullptr);
 }
 
+// Complejidad: O(n)
 Entrada* Bitacora::buscaSec(Entrada ip) {
     Entrada* actual = head;
     while(actual && actual->getIp()<ip.getIp()) {
@@ -176,6 +182,7 @@ Entrada* Bitacora::buscaSec(Entrada ip) {
     }
 }
 
+// Complejidad: O(n)
 void Bitacora::busquedaPorIp(string nombre, Entrada ip1, Entrada ip2) {
     Entrada* inicio = this->buscaSec(ip1);
     Entrada* fin = this->buscaSec(ip2);

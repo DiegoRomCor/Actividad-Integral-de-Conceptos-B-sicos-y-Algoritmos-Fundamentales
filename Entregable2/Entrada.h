@@ -28,6 +28,7 @@ class Entrada
         Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje);
         Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip, string mensaje);
+        
         // Complejidad: O(1)
         int conversionMes(string mes);
 
