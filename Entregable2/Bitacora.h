@@ -10,11 +10,11 @@
 using namespace std;
 
 class Bitacora {
-    public:
+    private:
         Entrada* head;
         Entrada* tail;
-        int size;
 
+    public:
         Bitacora();
         ~Bitacora();
 

@@ -19,7 +19,6 @@ using namespace std;
 Bitacora::Bitacora() {
     this->tail = nullptr;
     this->head = nullptr;
-    this->size = 0;
 }
 
 // Complejidad: O(n)
@@ -64,15 +63,13 @@ void Bitacora::leerArchivo(string nombre) {
             Entrada* nuevo = new Entrada(mes, stoi(dia), stoi(hora), stoi(minuto), stoi(segundo), linea);
             nuevo->leerIp(strIp);
 
-            if(this->size == 0) {
+            if(!this->head) {
                 this->head = nuevo;
                 this->tail = nuevo;
             } else {
                 this->tail->setNext(nuevo);
                 this->tail = nuevo;
             }
-
-            this->size++; 
             
         }
     }
@@ -99,33 +96,42 @@ void Bitacora::crearArchivo(string nombre) {
 // Obtenido con apoyo de: https://www.geeksforgeeks.org/dsa/merge-two-sorted-linked-lists-using-dummy-nodes/
 // En esta pagina dan un ejemplo de codigo que utiliza un dummy, o en este caso un auxiliar, lo que facilita el codigo
 
-// Complejidad: O(n)
-Entrada* Bitacora::mezcla(Entrada* a, Entrada* b) {
-    Entrada auxiliar;
-    Entrada* cola = &auxiliar;
+// Este video fue el que mas ayudo a crear la logica del Merge Sort: https://www.youtube.com/watch?v=8ocB7a_c-Cc
 
-    while(a && b) {
-        if (b->getIp() < a->getIp()) {
-            cola->setNext(b);
-            b = b->getNext();
+// Complejidad: O(n) - O(size(a) + size(b))
+Entrada* Bitacora::mezcla(Entrada* izquierda, Entrada* derecha) {
+    // Se crea este objeto ya que sera el primer nodo de la lista
+    Entrada* cabeza = new Entrada();
+    Entrada* actual = cabeza;
+
+    while(izquierda && derecha) {
+        if (derecha->getIp() < izquierda->getIp()) {
+            actual->setNext(derecha);
+            derecha = derecha->getNext();
         } else {
-            cola->setNext(a);
-            a = a->getNext();
+            actual->setNext(izquierda);
+            izquierda = izquierda->getNext();
         }
-        cola = cola->getNext();
+        actual = actual->getNext();
     }
 
-    if(a) {
-        cola->setNext(a);
+    // Cuando se termine el while, quiere decir que todavia puede haber un elemento extra en alguna de las listas, si por ejemplo se divide
+    // en 3 y 2, entonces hay que asegurarse
+    if(izquierda) {
+        actual->setNext(izquierda);
     }
-    else{
-        cola->setNext(b);
+    else if(derecha){
+        actual->setNext(derecha);
     }
 
-    return auxiliar.getNext();
+    // Se regresa el primer nodo
+    Entrada* auxiliar = cabeza;
+    cabeza = cabeza->getNext();
+    delete auxiliar;
+    return cabeza;
 }
 
-// Complejidad: O(log n)
+// Complejidad: O(n log n)
 Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
     if(!auxiliar || !auxiliar->getNext()) {
         return auxiliar;
@@ -150,9 +156,9 @@ Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
     return mezcla(izquierda, derecha);
 }
 
-// Complejidad: O(n log n)
+
 void Bitacora::mergeSort() {
-    if(this->size == 0 || this->size == 1) {
+    if(!this->head || !this->head->getNext()) {
         return;
     } 
 
@@ -184,13 +190,16 @@ Entrada* Bitacora::buscaSec(Entrada ip) {
 
 // Complejidad: O(n)
 void Bitacora::busquedaPorIp(string nombre, Entrada ip1, Entrada ip2) {
+    if(ip1.getIp() > ip2.getIp()) {
+        return;
+    }
+    
     Entrada* inicio = this->buscaSec(ip1);
-    Entrada* fin = this->buscaSec(ip2);
 
     ofstream archivo(nombre);
     if (archivo.is_open()) {
         Entrada* actual = inicio;
-        while(actual != fin) {
+        while(actual && actual->getIp() <= ip2.getIp()) {
             archivo << actual->getMensaje() << '\n';
             actual = actual->getNext();
         }

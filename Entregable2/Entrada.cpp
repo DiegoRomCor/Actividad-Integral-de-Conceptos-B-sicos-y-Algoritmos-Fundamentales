@@ -3,10 +3,7 @@
 //Marco Natsumi Rabiela Mun A01647377
 
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
-#include <cctype>
 #include <string>
 
 #include "Entrada.h"
@@ -26,13 +23,13 @@ Entrada::Entrada() {
 }
 
 // Complejidad: O(1)
-Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<int> ip) {
+Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje) {
     this->mes = conversionMes(mes);
     this->dia = dia;
     this->hora = hora;
     this->minuto = minuto;
     this->segundo = segundo;
-    this->ip = ip;
+    this->mensaje = mensaje;
     this->next = nullptr;
 }
 
@@ -44,17 +41,6 @@ Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, vector<
     this->minuto = minuto;
     this->segundo = segundo;
     this->ip = ip;
-    this->mensaje = mensaje;
-    this->next = nullptr;
-}
-
-// Complejidad: O(1)
-Entrada::Entrada(string mes, int dia, int hora, int minuto, int segundo, string mensaje) {
-    this->mes = conversionMes(mes);
-    this->dia = dia;
-    this->hora = hora;
-    this->minuto = minuto;
-    this->segundo = segundo;
     this->mensaje = mensaje;
     this->next = nullptr;
 }
