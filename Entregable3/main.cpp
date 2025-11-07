@@ -2,8 +2,19 @@
 //Omar Verduzco Velazquez A07019516
 //Marco Natsumi Rabiela Mun A01647377
 
+/*
+Falta por hacer:
+Funcion para agregar los nodos al arbol (Crear el arbol tambien dependiendo de si esta vacio o no root):
+    Recorres de Head a Tail la lista enlazada de Bitacora y cuentas cuantas veces se repite la ip, cuando termine el ciclo creas el nodo
+    BST Search para ver donde va y lo insertas en el arbol, si es frecuencia igual, lo agregas al vector que toca
+Funcion que busque dentro del arbol e imprima las mayores frecuencias (derecha abajo a izquierda arriba):
+    
+*/
+
 #include "Entrada.h"
 #include "Bitacora.h"
+#include "ArbolBitacora.h"
+#include "NodoEntrada.h"
 
 #include <iostream>
 #include <fstream>
@@ -22,36 +33,7 @@ int main() {
     b.mergeSort();
     b.crearArchivo("bitacora2OrdenadaIP-Eq7.txt");
 
-    /*int contador = 1;
-
-    string salir;
-
-    do {
-        string ipInicio;
-        Entrada ip1;
-
-        cout << "Ingresa la ip inicial (ej: 961.43.478.18): ";
-        cin>>ipInicio;
-        ipInicio+=":0";
-        ip1.leerIp(ipInicio);
-
-        string ipFin;
-        Entrada ip2;
-
-        cout << "Ingresa la ip final (ej: 961.43.478.18): ";
-        cin>>ipFin;
-        ipFin+=":9999";
-        ip2.leerIp(ipFin);
-
-        string nombre = "salida" + to_string(contador) + "-Eq7.txt";
-        b.busquedaPorIp(nombre, ip1, ip2);
-        
-        
-        cout<<"Deseas continuar? (Y para si, N para no)"<<endl;
-        cin>>salir;
-        contador++;
-
-    } while(salir == "Y" || salir == "y");*/
+    
 
     return 0;
 }

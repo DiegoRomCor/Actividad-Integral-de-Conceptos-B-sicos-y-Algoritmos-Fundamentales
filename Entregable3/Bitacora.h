@@ -34,6 +34,8 @@ class Bitacora {
         void busquedaPorIp(string nombre, Entrada ip1, Entrada ip2);
         // Complejidad: O(n)
         Entrada* buscaSec(Entrada ip);
+
+        
 };
 
 #endif
