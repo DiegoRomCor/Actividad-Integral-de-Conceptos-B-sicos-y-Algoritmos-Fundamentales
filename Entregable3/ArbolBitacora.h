@@ -24,6 +24,16 @@ class ArbolBitacora {
     public:
         ArbolBitacora();
         ~ArbolBitacora(); 
+
+        void destruir(NodoEntrada* actual);
+        
+        void formarArbol(Bitacora b);
+        NodoEntrada* getRoot() { 
+            return root; 
+        }
+
+        void imprimirTopN(int n);
+        void imprimirTopNRec(NodoEntrada* actual, int n, int& contador);
 };
 
 #endif

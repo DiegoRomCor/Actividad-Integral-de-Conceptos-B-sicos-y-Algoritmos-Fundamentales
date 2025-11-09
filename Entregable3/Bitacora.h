@@ -35,7 +35,11 @@ class Bitacora {
         // Complejidad: O(n)
         Entrada* buscaSec(Entrada ip);
 
-        
+        Entrada* getHead();
+        void setHead(Entrada* head);
+
+        Entrada* getTail();
+        void setTail(Entrada* tail);
 };
 
 #endif
