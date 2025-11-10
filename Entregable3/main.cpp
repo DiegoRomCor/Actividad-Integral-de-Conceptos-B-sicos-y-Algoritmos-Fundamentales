@@ -14,7 +14,6 @@ Funcion que busque dentro del arbol e imprima las mayores frecuencias (derecha a
 #include "Entrada.h"
 #include "Bitacora.h"
 #include "ArbolBitacora.h"
-#include "NodoEntrada.h"
 
 #include <iostream>
 #include <fstream>
@@ -22,6 +21,8 @@ Funcion que busque dentro del arbol e imprima las mayores frecuencias (derecha a
 #include <vector>
 #include <cctype>
 #include <string>
+
+#include <climits> 
 
 using namespace std;
 
@@ -31,9 +32,15 @@ int main() {
     b.leerArchivo("bitacora2.txt");
 
     b.mergeSort();
-    b.crearArchivo("bitacora2OrdenadaIP-Eq7.txt");
+    b.crearArchivo("bitacoraOrdenadaIP-Eq7-BST.txt");
 
-    
+    ArbolBitacora* ab = new ArbolBitacora();
+    ab->formarArbol(b);
+
+    int n = 100; // Aqui se cambia la n cantidad de ips mayores que se quiere
+
+    cout<<"Top "<<n<<" IPs con mas accesos:"<<endl;
+    ab->imprimirDescendiente(n);
 
     return 0;
 }

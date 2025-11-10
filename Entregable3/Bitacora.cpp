@@ -203,3 +203,19 @@ void Bitacora::busquedaPorIp(string nombre, Entrada ip1, Entrada ip2) {
         archivo.close();
     }
 }
+
+Entrada* Bitacora::getHead() {
+    return this->head;
+}
+
+void Bitacora::setHead(Entrada* head) {
+    this->head = head;
+}
+
+Entrada* Bitacora::getTail() {
+    return this->tail;
+}
+
+void Bitacora::setTail(Entrada* tail) {
+    this->tail = tail;
+}
