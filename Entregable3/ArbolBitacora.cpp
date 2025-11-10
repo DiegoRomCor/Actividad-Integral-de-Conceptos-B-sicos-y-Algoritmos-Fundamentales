@@ -34,8 +34,7 @@ ArbolBitacora::~ArbolBitacora() {
     this->root = nullptr;
 }
 
-// Complejidad: Mejor caso - O(n log n) // Pero caso - O(n^2) (Es decir, que actue como lista enlazada)
-        
+// Complejidad: Mejor caso - O(n log n) // Pero caso - O(n^2) (Es decir, que actue como lista enlazada)  
 void ArbolBitacora::formarArbol(Bitacora b) {
     Entrada* actual = b.getHead();
 
@@ -50,7 +49,6 @@ void ArbolBitacora::formarArbol(Bitacora b) {
             for(int i = 0; i < 4; ++i) {
                 if (ipActual[i] != ipSiguiente[i]) {
                     ipsIguales = false;
-                    break;
                 }
             }
 
