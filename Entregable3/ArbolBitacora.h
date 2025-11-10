@@ -15,25 +15,44 @@ struct NodoEntrada
     vector<string> ip;
     NodoEntrada* left;
     NodoEntrada* right;
+
+    // Complejidad: O(1)
+    NodoEntrada() {
+        this->frecuencia = 0;
+        this->left = nullptr;
+        this->right = nullptr;
+    }
+
+    // Complejidad: O(1)
+    NodoEntrada(int frecuencia, string ip) {
+        this->frecuencia = frecuencia;
+        this->ip.push_back(ip);
+        this->left = nullptr;
+        this->right = nullptr;
+    }
 };
 
 class ArbolBitacora {
     private:
         NodoEntrada* root;
 
+        // Complejidad: o(n)
+        int imprimirDescendiente(NodoEntrada* actual, int n);
+
     public:
+        // Complejidad: O(1)
         ArbolBitacora();
+        // Complejidad: O(n)
         ~ArbolBitacora(); 
 
+        // Complejidad: O(n) - Recorre todos los elementos del arreglo
         void destruir(NodoEntrada* actual);
         
+        // Complejidad: Mejor caso - O(n log n) // Pero caso - O(n^2) (Es decir, que actue como lista enlazada)
         void formarArbol(Bitacora b);
-        NodoEntrada* getRoot() { 
-            return root; 
-        }
 
-        void imprimirTopN(int n);
-        void imprimirTopNRec(NodoEntrada* actual, int n, int& contador);
+        // Complejidad: O(n)
+        void imprimirDescendiente(int n);
 };
 
 #endif

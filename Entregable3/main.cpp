@@ -37,12 +37,10 @@ int main() {
     ArbolBitacora* ab = new ArbolBitacora();
     ab->formarArbol(b);
 
-    int N;
-    cout << "Cuantas IPs quieres ver? ";
-    cin >> N;
+    int n = 100; // Aqui se cambia la n cantidad de ips mayores que se quiere
 
-    cout << "\nTop " << N << " IPs con más accesos:\n";
-    ab->imprimirTopN(N);
+    cout<<"Top "<<n<<" IPs con mas accesos:"<<endl;
+    ab->imprimirDescendiente(n);
 
     return 0;
 }
