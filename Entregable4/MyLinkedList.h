@@ -1,34 +1,26 @@
+// Diego Romero Corvera
+// A01646496
+
 #ifndef MYLINKEDLIST_H
 #define MYLINKEDLIST_H
 
 #include <iostream>
 #include <vector>
-#include <string>
 using namespace std;
 
 struct MyNodeLL
 {
     string key;
-    vector<string> value; // ahora guardamos lista de fechas
+    vector<string> value;
     MyNodeLL* next;
-
-    MyNodeLL() {
-        this->key = "";
-        this->value = vector<string>(0,0);
-        this->next = nullptr;
-    }
-
-    MyNodeLL(string key, vector<string> value) {
-        this->key = key;
-        this->value = value;
-        this->next = nullptr;
-    }
 
     MyNodeLL(string key, vector<string> value, MyNodeLL* next) {
         this->key = key;
         this->value = value;
         this->next = next;
-    }
+    }   
+
+    MyNodeLL(string key, vector<string> value) : MyNodeLL(key, value, nullptr) {}
 
     ~MyNodeLL() {}
 };
@@ -39,13 +31,30 @@ class MyLinkedList {
         MyNodeLL* head;
         MyNodeLL* tail;
 
+        // Complejidad: O(1)
         MyLinkedList();
+        // Complejidad: O(n)
         ~MyLinkedList();
-
+        // Complejidad: O(1)
         int length();
-        bool isEmpty(); 
-
-        
+        // Complejidad: O(1)
+        bool isEmpty();
+        // Complejidad: O(1)
+        vector<string> first();
+        // Complejidad: O(1)
+        vector<string> last();
+        // Complejidad: O(n)
+        vector<string> getAt(string key); //Regresa el valor asociado a esta llave
+        // Complejidad: O(1)
+        void insertFirst(string key, vector<string> value);
+        // Complejidad: O(1)
+        void removeFirst();
+        // Complejidad: O(1)
+        void removeLast();
+        // Complejidad: O(n)
+        void removeAt(string key);
+        // Complejidad: O(n)
+        void flush();
 };
 
 #endif
