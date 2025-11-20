@@ -90,6 +90,21 @@ void Bitacora::crearArchivo(string nombre) {
     }
 }
 
+// Complejidada: O(1)
+bool Bitacora::comparacionFecha(Entrada* izquierda, Entrada* derecha) {
+    if(izquierda->getMes() != derecha->getMes()) {
+        return izquierda->getMes() < derecha->getMes();
+    } else if(izquierda->getDia() != derecha->getDia()) {
+        return izquierda->getDia() < derecha->getDia();
+    } else if(izquierda->getHora() != derecha->getHora()) {
+        return izquierda->getHora() < derecha->getHora();
+    } else if(izquierda->getMinuto() != derecha->getMinuto()) {
+        return izquierda->getMinuto() < derecha->getMinuto();
+    } else {
+        return izquierda->getSegundo() < derecha->getSegundo();
+    }
+}
+
 // Obtenido con apoyo de: https://www.baeldung.com/cs/merge-sort-linked-list // Codigo de ejemplo para entender como funciona
 // https://interviewkickstart.com/blogs/learn/merge-sort-for-linked-list // En este se muestra un pseudocodigo de como se utiliza, ademas
 // muestra el utilizar fast and slow method para combinarlos
@@ -100,12 +115,13 @@ void Bitacora::crearArchivo(string nombre) {
 
 // Complejidad: O(n) - O(size(a) + size(b))
 Entrada* Bitacora::mezcla(Entrada* izquierda, Entrada* derecha) {
-    // Se crea este objeto ya que sera el primer nodo de la lista
+    // Nodo centinela para simplificar el merge
     Entrada* cabeza = new Entrada();
     Entrada* actual = cabeza;
 
-    while(izquierda && derecha) {
-        if (derecha->getIp() < izquierda->getIp()) {
+    while (izquierda && derecha) {
+        // Si derecha < izquierda (por fecha), tomar derecha; si no, tomar izquierdizquierda->
+        if (this->comparacionFecha(derecha, izquierda)) {
             actual->setNext(derecha);
             derecha = derecha->getNext();
         } else {
@@ -115,39 +131,33 @@ Entrada* Bitacora::mezcla(Entrada* izquierda, Entrada* derecha) {
         actual = actual->getNext();
     }
 
-    // Cuando se termine el while, quiere decir que todavia puede haber un elemento extra en alguna de las listas, si por ejemplo se divide
-    // en 3 y 2, entonces hay que asegurarse
-    if(izquierda) {
+    // Adjuntar resto si alguno quedó
+    if (izquierda) {
         actual->setNext(izquierda);
-    }
-    else if(derecha){
+    } else if (derecha) {
         actual->setNext(derecha);
     }
 
-    // Se regresa el primer nodo
     Entrada* auxiliar = cabeza;
     cabeza = cabeza->getNext();
     delete auxiliar;
     return cabeza;
 }
 
-// Complejidad: O(n log n)
 Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
-    if(!auxiliar || !auxiliar->getNext()) {
+    if (!auxiliar || !auxiliar->getNext()) {
         return auxiliar;
-    } 
+    }
 
-    // Encontrar la mitad de la lista actual usando el metodo Slow and Fast
+    // Slow and fast para encontrar la mitad
     Entrada* lento = auxiliar;
     Entrada* rapido = auxiliar->getNext();
-    while(rapido && rapido->getNext()) {
+    while (rapido && rapido->getNext()) {
         lento = lento->getNext();
         rapido = rapido->getNext()->getNext();
     }
 
     Entrada* medio = lento->getNext();
-    // Hacemos que apunte a null, para poder dividir la lista, 
-    // al hacer que pare en el while anterior, des esta forma dividimos de mitad en mitad
     lento->setNext(nullptr);
 
     Entrada* izquierda = mergeRecursivo(auxiliar);
@@ -156,18 +166,16 @@ Entrada* Bitacora::mergeRecursivo(Entrada* auxiliar) {
     return mezcla(izquierda, derecha);
 }
 
-// Complejidad: O(n log n)
 void Bitacora::mergeSort() {
-    if(!this->head || !this->head->getNext()) {
+    if (!this->head || !this->head->getNext()) {
         return;
-    } 
+    }
 
     this->head = mergeRecursivo(this->head);
 
-    // Esto es necesario para dejar el tail hasta el final de la lista, 
-    // ya que movimos toda la lista
+    // Actualizar tail (último nodo)
     Entrada* actual = this->head;
-    while(actual->getNext()) {
+    while (actual->getNext()) {
         actual = actual->getNext();
     }
 
