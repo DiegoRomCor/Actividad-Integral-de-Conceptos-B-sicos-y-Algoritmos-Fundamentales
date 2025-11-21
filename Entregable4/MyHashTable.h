@@ -6,6 +6,8 @@
 #include "MyLinkedList.h" // <----------------- Cambiar esto en caso de que se utilice otra lista enlazada
 //En caso de utilizar tu lista enlazada recuerda también enviar el archivo para poder compilar y ejecutar el programa
 
+#include "Bitacora.h"
+
 using namespace std;
 
 class MyHashTable{
@@ -30,5 +32,7 @@ class MyHashTable{
        vector<string> get(string key);
        // Complejidad: O(1)
        void remove(string key);
+
+       void crearHashtTable(Bitacora b);
 };
 #endif
