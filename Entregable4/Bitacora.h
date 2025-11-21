@@ -30,6 +30,9 @@ class Bitacora {
         // Complejidad: O(n log n)
         void mergeSort(); 
 
+        // Complejidad: O(1)
+        bool comparacionFecha(Entrada* izquierda, Entrada* derecha);
+
         // Complejidad: O(n)
         void busquedaPorIp(string nombre, Entrada ip1, Entrada ip2);
         // Complejidad: O(n)
