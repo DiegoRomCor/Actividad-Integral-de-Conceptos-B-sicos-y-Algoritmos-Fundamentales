@@ -11,11 +11,6 @@
 
 using namespace std;
 
-// trim derecha (borra espacios y '\r')
-static inline void rtrim_inplace(string &s) {
-    while(!s.empty() && isspace((unsigned char)s.back())) s.pop_back();
-}
-
 int main() {
     Bitacora b;
     
@@ -29,7 +24,7 @@ int main() {
     string ipConsulta;
     int seguir;
     do {
-        cout<<"Escribe la ipConsulta que quieres consultar (ej: 10.15.175.231):"<<endl;
+        cout<<"Escribe la ip que quieres consultar (ej: 10.15.175.231):"<<endl;
         cin>>ipConsulta;
 
         try {
