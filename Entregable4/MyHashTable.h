@@ -1,5 +1,6 @@
-// Diego Romero Corvera
-// A01646496
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
 
 #ifndef MYHASHTABLE_H
 #define MYHASHTABLE_H

@@ -1,7 +1,6 @@
-// Diego Romero Corvera
-// A01646496
-
-// Se infiere que las posiciones empiezan en 0
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
 
 #include "MyLinkedList.h"
 #include <iostream>
