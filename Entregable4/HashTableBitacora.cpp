@@ -4,8 +4,8 @@
 
 #include "Entrada.h"
 #include "Bitacora.h"
-#include "MyHashTable.h"
-#include "MyLinkedList.h"
+#include "HashTableBitacora.h"
+#include "LinkedListHash.h"
 
 #include <functional>
 #include <vector>
@@ -16,14 +16,14 @@
 using namespace std;
 
 // Complejidad: O(1)
-MyHashTable::MyHashTable(){
+HashTableBitacora::HashTableBitacora(){
     this->size = 0;
     this->sizeA = 601;
-    this->tabla = new MyLinkedList[this->sizeA];
+    this->tabla = new LinkedListHash[this->sizeA];
 }
 
 // Complejidad: O(1)
-MyHashTable::~MyHashTable() {
+HashTableBitacora::~HashTableBitacora() {
     delete[] this->tabla;
     this->tabla = nullptr;
     this->size = 0;
@@ -31,27 +31,27 @@ MyHashTable::~MyHashTable() {
 }
 
 // Complejidad: O(1)
-int MyHashTable::getPos(string key){
+int HashTableBitacora::getPos(string key){
     size_t hashC=hash<string>{}(key);
     int hashCode=static_cast<int>(hashC);
     return abs(hashCode)%this->sizeA;
 }
 
 // Complejidad: O(1)
-bool MyHashTable::isEmpty() {
+bool HashTableBitacora::isEmpty() {
     return this->size == 0;
 }
 
 // Obtenido con ayuda de: https://www.youtube.com/watch?v=uaGWFN6djLw&embeds_referring_euri=https%3A%2F%2Fchatgpt.com%2F&source_ve_path=OTY3MTQ 
 // https://www.youtube.com/watch?v=2_3fR-k-LzI
 // Complejidad: O(n)
-void MyHashTable::rehashing() {
+void HashTableBitacora::rehashing() {
     // Primero se extraen todos las parejas de valores que se tienen
     vector<string> claves;
     vector<vector<string>> valores;
 
     for(int i = 0; i < this->sizeA; ++i) {
-        MyNodeLL* actual = this->tabla[i].head;
+        NodeLinked* actual = this->tabla[i].head;
         while(actual) {
             claves.push_back(actual->key);
             valores.push_back(actual->value);
@@ -62,7 +62,7 @@ void MyHashTable::rehashing() {
 
     // Nuevo tama;o de la tabla
     this->sizeA = this->sizeA * 2 + 1;
-    this->tabla = new MyLinkedList[this->sizeA];
+    this->tabla = new LinkedListHash[this->sizeA];
 
     // Se insertan los valores de antes en la nueva tabla creada
     this->size = 0;
@@ -74,7 +74,7 @@ void MyHashTable::rehashing() {
 }
 
 // Complejidad: O(1)
-void MyHashTable::put(string key, string fecha) {
+void HashTableBitacora::put(string key, string fecha) {
     double carga =(double)(this->size + 1) /(double)this->sizeA;
     if(carga > 0.75) {
         this->rehashing();
@@ -82,7 +82,7 @@ void MyHashTable::put(string key, string fecha) {
 
     int posicion = this->getPos(key);
 
-    MyNodeLL* nodo = this->tabla[posicion].head;
+    NodeLinked* nodo = this->tabla[posicion].head;
     while(nodo) {
         if(nodo->key == key) {
             nodo->value.push_back(fecha);
@@ -99,7 +99,7 @@ void MyHashTable::put(string key, string fecha) {
 }
 
 // Complejidad: O(1) -- Peor caso O(n)
-vector<string> MyHashTable::get(string key) {
+vector<string> HashTableBitacora::get(string key) {
     if(this->isEmpty()) {
         throw invalid_argument("No se puede obtener de una tabla vacía");
     }
@@ -108,7 +108,7 @@ vector<string> MyHashTable::get(string key) {
 }
 
 // Complejidad: O(1) -- Peor caso O(n)
-void MyHashTable::remove(string key) {
+void HashTableBitacora::remove(string key) {
     if(this->isEmpty()) {
         throw invalid_argument("No se puede eliminar de una tabla vacía");
     }
@@ -148,7 +148,7 @@ string convertirFecha(int mes) {
 }
 
 // Complejidad: O(n)
-void MyHashTable::crearHashtTable(Bitacora b) {
+void HashTableBitacora::crearHashtTable(Bitacora b) {
     Entrada* actual = b.getHead();
     while(actual) {
         // Convertimos la IP en un string

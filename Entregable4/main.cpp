@@ -3,7 +3,7 @@
 //Marco Natsumi Rabiela Mun A01647377
 
 #include "Bitacora.h"
-#include "MyHashTable.h"
+#include "HashTableBitacora.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -19,7 +19,7 @@ int main() {
     b.mergeSort();
     b.crearArchivo("BitacoraOrdenada.txt");
 
-    MyHashTable ht;
+    HashTableBitacora ht;
     ht.crearHashtTable(b);
 
     string ipConsulta;

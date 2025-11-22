@@ -2,56 +2,38 @@
 //Omar Verduzco Velazquez A07019516
 //Marco Natsumi Rabiela Mun A01647377
 
-#include "MyLinkedList.h"
+#include "LinkedListHash.h"
 #include <iostream>
 
 using namespace std;
 
 // Complejidad: O(1)
-MyLinkedList::MyLinkedList() {
+LinkedListHash::LinkedListHash() {
     this->size = 0;
     this->head = nullptr;
     this->tail = nullptr;
 }
 
 // Complejidad: O(n)
-MyLinkedList::~MyLinkedList() {
+LinkedListHash::~LinkedListHash() {
     // Obtenido parcialmente de: https://www.youtube.com/watch?v=kq4cduYutI8
     // En este video mas que nada me apoye de la logica para eliminar nodos.
     this->flush();
 }
 
 // Complejidad: O(1)
-int MyLinkedList::length() {
+int LinkedListHash::length() {
     return this->size;
 }
 
 // Complejidad: O(1)
-bool MyLinkedList::isEmpty() {
+bool LinkedListHash::isEmpty() {
     return this->size == 0;
 }
 
 // Complejidad: O(1)
-vector<string> MyLinkedList::first() {
-    if(!this->isEmpty()) {
-        return this->head->value;
-    } else {
-        throw invalid_argument("No se puede obtener el primer elemento de una lista vacia");
-    }
-}
-
-// Complejidad: O(1)
-vector<string> MyLinkedList::last() {
-    if(!this->isEmpty()) {
-        return this->tail->value;
-    } else {
-        throw invalid_argument("No se puede obtener el ultimo elemento de una lista vacia");
-    }
-}
-
-// Complejidad: O(1)
-void MyLinkedList::insertFirst(string key, vector<string> value) {
-    MyNodeLL* nuevo = new MyNodeLL(key,value,this->head);
+void LinkedListHash::insertFirst(string key, vector<string> value) {
+    NodeLinked* nuevo = new NodeLinked(key,value,this->head);
     this->head = nuevo;
     if(this->size == 0) {
         this->tail = nuevo;
@@ -60,8 +42,8 @@ void MyLinkedList::insertFirst(string key, vector<string> value) {
 }
 
 // Complejidad: O(n)
-vector<string> MyLinkedList::getAt(string key) {
-    MyNodeLL* actualent = this->head;
+vector<string> LinkedListHash::getAt(string key) {
+    NodeLinked* actualent = this->head;
     while(actualent) {
         if(actualent->key == key) {
             return actualent->value;
@@ -73,12 +55,12 @@ vector<string> MyLinkedList::getAt(string key) {
 }
 
 // Complejidad: O(1)
-void MyLinkedList::removeFirst() {
+void LinkedListHash::removeFirst() {
     if(this->isEmpty()) {
         throw invalid_argument("No se puede eliminar el primer elemento de una lista vacia");
     }
 
-    MyNodeLL* auxiliar = this->head;
+    NodeLinked* auxiliar = this->head;
     this->head = this->head->next;
     delete auxiliar;
     this->size--;
@@ -90,7 +72,7 @@ void MyLinkedList::removeFirst() {
 }
 
 // Complejidad: O(1)
-void MyLinkedList::removeLast() {
+void LinkedListHash::removeLast() {
     if(this->isEmpty()) {
         throw invalid_argument("No se puede eliminar el último elemento de una lista vacia");
     }
@@ -103,7 +85,7 @@ void MyLinkedList::removeLast() {
         return;
     }
 
-    MyNodeLL* auxiliar = this->head;
+    NodeLinked* auxiliar = this->head;
     while(auxiliar->next != this->tail) {
         auxiliar = auxiliar->next;
     }
@@ -114,7 +96,7 @@ void MyLinkedList::removeLast() {
 }
 
 // Complejidad: O(n)
-void MyLinkedList::removeAt(string key) {
+void LinkedListHash::removeAt(string key) {
     if(this->isEmpty()) {
         throw invalid_argument("No se puede eliminar de una lista vacia");
     }
@@ -129,8 +111,8 @@ void MyLinkedList::removeAt(string key) {
         return;
     }
 
-    MyNodeLL* padre = this->head;
-    MyNodeLL* actual = this->head->next;
+    NodeLinked* padre = this->head;
+    NodeLinked* actual = this->head->next;
 
     while(actual) {
         if(actual->key == key) {
@@ -150,7 +132,7 @@ void MyLinkedList::removeAt(string key) {
 }
 
 // Complejidad: O(n)
-void MyLinkedList::flush() {
+void LinkedListHash::flush() {
     // Obtenido parcialmente de: https://www.youtube.com/watch?v=kq4cduYutI8
     // En este video mas que nada me apoye de la logica para eliminar nodos.
     while(!this->isEmpty()) {

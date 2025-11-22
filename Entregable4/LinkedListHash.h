@@ -2,48 +2,44 @@
 //Omar Verduzco Velazquez A07019516
 //Marco Natsumi Rabiela Mun A01647377
 
-#ifndef MYLINKEDLIST_H
-#define MYLINKEDLIST_H
+#ifndef LINKEDLISTHASH_H
+#define LINKEDLISTHASH_H
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-struct MyNodeLL
+struct NodeLinked
 {
     string key;
     vector<string> value;
-    MyNodeLL* next;
+    NodeLinked* next;
 
-    MyNodeLL(string key, vector<string> value, MyNodeLL* next) {
+    NodeLinked(string key, vector<string> value, NodeLinked* next) {
         this->key = key;
         this->value = value;
         this->next = next;
     }   
 
-    MyNodeLL(string key, vector<string> value) : MyNodeLL(key, value, nullptr) {}
+    NodeLinked(string key, vector<string> value) : NodeLinked(key, value, nullptr) {}
 
-    ~MyNodeLL() {}
+    ~NodeLinked() {}
 };
 
-class MyLinkedList {
+class LinkedListHash {
     public:  
         int size;
-        MyNodeLL* head;
-        MyNodeLL* tail;
+        NodeLinked* head;
+        NodeLinked* tail;
 
         // Complejidad: O(1)
-        MyLinkedList();
+        LinkedListHash();
         // Complejidad: O(n)
-        ~MyLinkedList();
+        ~LinkedListHash();
         // Complejidad: O(1)
         int length();
         // Complejidad: O(1)
         bool isEmpty();
-        // Complejidad: O(1)
-        vector<string> first();
-        // Complejidad: O(1)
-        vector<string> last();
         // Complejidad: O(n)
         vector<string> getAt(string key); //Regresa el valor asociado a esta llave
         // Complejidad: O(1)
