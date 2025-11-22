@@ -1,8 +1,9 @@
-// main.cpp
-// Diego Romero Corvera A01646496
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
 
 #include "Bitacora.h"
-#include "MyHashTable.h"
+#include "HashTableBitacora.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -18,7 +19,7 @@ int main() {
     b.mergeSort();
     b.crearArchivo("BitacoraOrdenada.txt");
 
-    MyHashTable ht;
+    HashTableBitacora ht;
     ht.crearHashtTable(b);
 
     string ipConsulta;

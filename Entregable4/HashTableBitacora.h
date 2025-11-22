@@ -1,18 +1,18 @@
-// Diego Romero Corvera
-// A01646496
+//Diego Romero Corvera A01646496
+//Omar Verduzco Velazquez A07019516
+//Marco Natsumi Rabiela Mun A01647377
 
-#ifndef MYHASHTABLE_H
-#define MYHASHTABLE_H
-#include "MyLinkedList.h" // <----------------- Cambiar esto en caso de que se utilice otra lista enlazada
-//En caso de utilizar tu lista enlazada recuerda también enviar el archivo para poder compilar y ejecutar el programa
+#ifndef HASHTABLEBITACORA_H
+#define HASHTABLEBITACORA_H
+#include "LinkedListHash.h"
 
 #include "Bitacora.h"
 
 using namespace std;
 
-class MyHashTable{
+class HashTableBitacora{
     public://Recuerden que esto sólo lo hacemos para poder revisar las actividades pero debería ser private
-        MyLinkedList* tabla;
+        LinkedListHash* tabla;
         int size; //Cantidad de valores que hay almacenados en la tabla
         int sizeA; //Cantidad del arreglo
         // Complejidad: O(n)
@@ -21,9 +21,9 @@ class MyHashTable{
         int getPos(string key);
 
         // Complejidad: O(1)
-        MyHashTable();  //Tamaño inicial 11
+        HashTableBitacora();  //Tamaño inicial 11
         // Complejidad: O(n)
-        ~MyHashTable();
+        ~HashTableBitacora();
         // Complejidad: O(1)
         bool isEmpty(); 
         // Complejidad: O(1)
