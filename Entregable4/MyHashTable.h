@@ -12,27 +12,27 @@ using namespace std;
 
 class MyHashTable{
     public://Recuerden que esto sólo lo hacemos para poder revisar las actividades pero debería ser private
-       MyLinkedList* tabla;
-       int size; //Cantidad de valores que hay almacenados en la tabla
-       int sizeA; //Cantidad del arreglo
-       // Complejidad: O(n)
-       void rehashing(); //Crece el arreglo al doble del tamaño del arreglo actual + 1 // El factor de carga debe ser menor de .75
-       // Complejidad: O(1)
-       int getPos(string key);
+        MyLinkedList* tabla;
+        int size; //Cantidad de valores que hay almacenados en la tabla
+        int sizeA; //Cantidad del arreglo
+        // Complejidad: O(n)
+        void rehashing(); //Crece el arreglo al doble del tamaño del arreglo actual + 1 // El factor de carga debe ser menor de .75
+        // Complejidad: O(1)
+        int getPos(string key);
 
-       // Complejidad: O(1)
-       MyHashTable();  //Tamaño inicial 11
-       // Complejidad: O(n)
-       ~MyHashTable();
-       // Complejidad: O(1)
-       bool isEmpty(); 
-       // Complejidad: O(1)
-       void put(string key, string fecha); // No se tiene que validar la key, solo se tiene que insertar
-       // Complejidad: O(1)
-       vector<string> get(string key);
-       // Complejidad: O(1)
-       void remove(string key);
-
-       void crearHashtTable(Bitacora b);
+        // Complejidad: O(1)
+        MyHashTable();  //Tamaño inicial 11
+        // Complejidad: O(n)
+        ~MyHashTable();
+        // Complejidad: O(1)
+        bool isEmpty(); 
+        // Complejidad: O(1)
+        void put(string key, string fecha); // No se tiene que validar la key, solo se tiene que insertar
+        // Complejidad: O(1)
+        vector<string> get(string key);
+        // Complejidad: O(1)
+        void remove(string key);
+            // Complejidad: O(n)
+        void crearHashtTable(Bitacora b);
 };
 #endif

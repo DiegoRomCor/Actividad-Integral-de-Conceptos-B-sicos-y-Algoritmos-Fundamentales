@@ -16,7 +16,7 @@ using namespace std;
 // Complejidad: O(1)
 MyHashTable::MyHashTable(){
     this->size = 0;
-    this->sizeA = 11;
+    this->sizeA = 601;
     this->tabla = new MyLinkedList[this->sizeA];
 }
 
@@ -57,9 +57,6 @@ void MyHashTable::rehashing() {
         }
     }
     delete[] this->tabla;
-
-    this->sizeA = this->sizeA * 2 + 1;
-    this->tabla = new MyLinkedList[this->sizeA];
 
     // Nuevo tama;o de la tabla
     this->sizeA = this->sizeA * 2 + 1;
@@ -148,6 +145,7 @@ string convertirFecha(int mes) {
     return " ";
 }
 
+// Complejidad: O(n)
 void MyHashTable::crearHashtTable(Bitacora b) {
     Entrada* actual = b.getHead();
     while(actual) {
@@ -156,7 +154,24 @@ void MyHashTable::crearHashtTable(Bitacora b) {
         string clave = to_string(ip[0]) + "." + to_string(ip[1]) + "." + to_string(ip[2]) + "." + to_string(ip[3]);
 
         // Convertimos la Fecha y Hora en String
-        string fecha = convertirFecha(actual->getMes()) + " " + to_string(actual->getDia()) + " " + to_string(actual->getHora()) + ":" + to_string(actual->getMinuto()) + ":" + to_string(actual->getSegundo());
+        string hora = "";
+        string minuto = "";
+        string segundo = "";
+        if(actual->getHora() < 10) {
+            hora = "0";
+        }
+        if(actual->getMinuto() < 10) {
+            minuto = "0";
+        }
+        if(actual->getSegundo() < 10) {
+            segundo = "0";
+        }
+
+        hora += to_string(actual->getHora());
+        minuto += to_string(actual->getMinuto());
+        segundo += to_string(actual->getSegundo());
+
+        string fecha = convertirFecha(actual->getMes()) + " " + to_string(actual->getDia()) + " " + hora + ":" + minuto + ":" + segundo;
 
         // Insertamos en la HashTable
         this->put(clave, fecha);
